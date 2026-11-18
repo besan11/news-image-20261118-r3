@@ -16,7 +16,12 @@ A serif broadsheet front page, 1024x1024, drawn entirely from code:
 
 ## How it works
 
-`main.ts` (Node 22, standard library only) draws the whole page with a custom 5x7 bitmap font, code-drawn scenes, charts and a world map, and a PNG encoder written from scratch. No network, no external images, no randomness and no clock in the render path — two runs write identical bytes.
+`main.ts` (Node 22, standard library only) draws the whole page with smooth
+serif/sans text from subsetted Noto TTFs embedded in the file (rasterised by
+a small TrueType engine in the same file), code-drawn scenes, charts and a
+world map, and a PNG encoder written from scratch. No network, no external
+images, no randomness and no clock in the render path — two runs write
+identical bytes.
 
 ```sh
 mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
@@ -25,4 +30,4 @@ mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
 ## Verification
 
-Every fact and number on the page was checked against live reporting on 19 November 2026 before it was drawn. Three draft stories failed that check and were replaced with verified backups (see NOTES.md): the France march (17 Nov, not 18 Nov), the Eswatini clashes (not found), and the Fela Kuti induction (ceremony 14 Nov). Rendered twice with identical sha256; visually checked panel by panel for overlapping or garbled text.
+Every fact and number on the page was checked against live reporting on 19 November 2026 before it was drawn. Three draft stories failed that check and were replaced with verified backups (see NOTES.md): the France march (17 Nov, not 18 Nov), the Eswatini clashes (not found), and the Fela Kuti induction (ceremony 14 Nov). Rendered twice with identical sha256 (`8ee4c232…`); visually checked panel by panel for overlapping or garbled text, including a pixel-measured check that no briefs rows touch.
